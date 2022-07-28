@@ -1,0 +1,16 @@
+axiosを利用し、バックエンドへresponseを出す時、下記の三つの方法があります。
+
+      // 未完成todoを検索
+      async search({ commit }, { name,searchDate}) {
+        // (方法１:get請求、URLに検索ワードを配置)
+        // let { data } = await this.$axios.get('/api/c1/search/' + name);
+
+        // (方法２：post請求、bodyに検索ワードを配置)
+        // let { data } = await this.$axios.post('/api/c1/search', { name: name });
+
+        // (方法３：get請求、paramsに検索ワードを配置)
+        let { data } = await this.$axios.get('/api/c1/search', { params: { name: name, searchDate: searchDate } });
+
+        console.log(data);
+        commit('getItems', data);
+      }
